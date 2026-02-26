@@ -1,0 +1,74 @@
+# ======================
+# Build folders
+# ======================
+target/
+build/
+out/
+bin/
+
+# ======================
+# Maven
+# ======================
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+# ======================
+# Gradle
+# ======================
+.gradle/
+build/
+
+# ======================
+# Logs
+# ======================
+*.log
+logs/
+
+# ======================
+# OS files
+# ======================
+.DS_Store
+Thumbs.db
+
+# ======================
+# IDE - IntelliJ
+# ======================
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# ======================
+# IDE - Eclipse / STS
+# ======================
+.classpath
+.project
+.settings/
+.springBeans
+
+# ======================
+# IDE - VS Code
+# ======================
+.vscode/
+
+# ======================
+# Compiled Java
+# ======================
+*.class
+
+# ======================
+# Environment files
+# ======================
+.env
+application-local.properties
+application-dev.properties
+
+# ======================
+# Tomcat files (if local server)
+# ======================
+*.war
+*.ear
+*.jar
