@@ -1,9 +1,14 @@
 package controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import dao.StudentDao;
 import dto.Student;
@@ -22,24 +27,73 @@ public class MyController {
 		return "Data Inserted";
 	}
 	
-	@RequestMapping("/d")
-	@ResponseBody
-	public String delete()
+	@RequestMapping("/fetch")
+//	public ModelAndView fetchById(@RequestParam("id") int id) this is URL rewriting
+	public Object fetchById(@ModelAttribute Student std)
 	{
-		return "Data Deleted";
+		
+//		System.out.println(id);
+		
+		StudentDao studentDao=new StudentDao();
+		for(int i=0;i<=std.getId();i++)
+		{
+			if(i==std.getId()) {
+		Student student=studentDao.fetchById(std.getId());
+		
+		ModelAndView modelAndView=new ModelAndView("View.jsp");
+		modelAndView.addObject("data",student);
+		return modelAndView;
+			}
+		}
+		return null;
 	}
 	
-	@RequestMapping("/u")
+//	@RequestMapping("/delete/{id}") 
+//	public String delete(@PathVariable("id") int id) " path variable to get id ! "
+	@RequestMapping("/delete")
 	@ResponseBody
-	public String update()
+	public Object delete(@ModelAttribute Student std)
 	{
-		return "Data Updated";
+		StudentDao studentDao=new StudentDao();
+		 studentDao.deleteById(std.getId());
+		
+
+		List<Student> list=studentDao.fetchAll();
+		
+		ModelAndView modelAndView=new ModelAndView("FetchAll.jsp");
+		modelAndView.addObject("data",list);
+		return modelAndView;
 	}
 	
-	@RequestMapping("/f")
+	
+	
+	@RequestMapping("/fall")
+	public ModelAndView fetchAll() {
+		StudentDao studentDao=new StudentDao();
+		List<Student> list=studentDao.fetchAll();
+		ModelAndView modelAndView=new ModelAndView("FetchAll.jsp");
+		modelAndView.addObject("data",list);
+		return modelAndView;
+		
+	}
+	
+	@RequestMapping("/dall")
 	@ResponseBody
-	public String fetch()
+	public String deleteAll() {
+		StudentDao studentDao=new StudentDao();
+		return	studentDao.deletAll();
+		
+	}
+	
+	@RequestMapping("/update")
+	@ResponseBody
+	public ModelAndView update(@ModelAttribute Student student)
 	{
-		return "Data Fetched";
+		StudentDao studentDao=new StudentDao();
+		 studentDao.update(student);
+		 List<Student> list=studentDao.fetchAll();
+		 ModelAndView modelAndView=new ModelAndView("FetchAll.jsp");
+		 modelAndView.addObject("data",list);
+		 return modelAndView;
 	}
 }

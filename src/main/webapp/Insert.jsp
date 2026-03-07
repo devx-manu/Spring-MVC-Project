@@ -7,11 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="insert">
+<form action="insert" method="post">
 
 <input type="text" name="name" placeholder="Enter name"><br>
+<br>
 <input type="text" name="email" placeholder="Enter email"><br>
-<input type="text" name="password" placeholder="Enter password"><br>
+<br>
+<input type="password" name="password" placeholder="Enter password"><br>
+<br>
 <button>Submit</button>
 
 
